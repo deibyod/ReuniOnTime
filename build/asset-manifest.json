@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ReuniOnTime/static/css/main.6d207838.css",
+    "main.js": "/ReuniOnTime/static/js/main.5f09f030.js",
+    "index.html": "/ReuniOnTime/index.html",
+    "main.6d207838.css.map": "/ReuniOnTime/static/css/main.6d207838.css.map",
+    "main.5f09f030.js.map": "/ReuniOnTime/static/js/main.5f09f030.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d207838.css",
+    "static/js/main.5f09f030.js"
+  ]
+}

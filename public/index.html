@@ -8,30 +8,5 @@
 </head>
 <body>
     <div id="root"></div>
-    <div>
-        <label for="timeSelector">Select time (minutes):</label>
-        <input type="number" id="timeSelector" min="1" max="60">
-        <button onclick="startTimer()">Start</button>
-    </div>
-    <div id="timer">00:00</div>
-    <script>
-        let timerInterval;
-        function startTimer() {
-            const timeSelector = document.getElementById('timeSelector');
-            const selectedTime = parseInt(timeSelector.value) * 60;
-            let elapsedTime = 0;
-            const timerElement = document.getElementById('timer');
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                elapsedTime++;
-                const minutes = Math.floor(elapsedTime / 60).toString().padStart(2, '0');
-                const seconds = (elapsedTime % 60).toString().padStart(2, '0');
-                timerElement.textContent = `${minutes}:${seconds}`;
-                if (elapsedTime >= selectedTime) {
-                    timerElement.classList.add('red');
-                }
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
