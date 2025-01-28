@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/ReuniOnTime/static/css/main.6d207838.css",
-    "main.js": "/ReuniOnTime/static/js/main.5f09f030.js",
+    "main.css": "/ReuniOnTime/static/css/main.e34191fd.css",
+    "main.js": "/ReuniOnTime/static/js/main.214ee2ad.js",
+    "static/media/relojio.png": "/ReuniOnTime/static/media/relojio.6b4006275fa811ffb584.png",
+    "static/media/beep.mp3": "/ReuniOnTime/static/media/beep.99dbfad87e1971f6d83c.mp3",
     "index.html": "/ReuniOnTime/index.html",
-    "main.6d207838.css.map": "/ReuniOnTime/static/css/main.6d207838.css.map",
-    "main.5f09f030.js.map": "/ReuniOnTime/static/js/main.5f09f030.js.map"
+    "main.e34191fd.css.map": "/ReuniOnTime/static/css/main.e34191fd.css.map",
+    "main.214ee2ad.js.map": "/ReuniOnTime/static/js/main.214ee2ad.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d207838.css",
-    "static/js/main.5f09f030.js"
+    "static/css/main.e34191fd.css",
+    "static/js/main.214ee2ad.js"
   ]
 }
