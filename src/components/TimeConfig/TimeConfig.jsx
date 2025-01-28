@@ -10,13 +10,29 @@ const TimeConfig = forwardRef((props, ref) => {
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     };
 
+    const handleInputChange = (event) => {
+        const value = event.target.value;
+        const [minutes, seconds] = value.split(':').map(Number);
+        if (!isNaN(minutes) && !isNaN(seconds)) {
+            setCount(minutes * 60 + seconds);
+        }
+    };
+
     useImperativeHandle(ref, () => ({
         getTime: () => count
     }));
 
     return (
         <div className="counter">
-            <p className='configured-time'>Tiempo: <span id="timeconfig">{formatTime(count)}</span></p>
+            <p className='configured-time'>
+                Tiempo: 
+                <input 
+                    id="timeconfig" 
+                    type="text" 
+                    value={formatTime(count)} 
+                    onChange={handleInputChange} 
+                />
+            </p>
             <button className='secondary-button' onClick={() => setCount(count + 10)}>⬆ Aumentar</button>
             <button className='secondary-button' onClick={() => setCount(count - 10)}>⬇ Reducir</button>
         </div>
