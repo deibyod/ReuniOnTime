@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Timer.scss';
 import TimeConfig from '../TimeConfig/TimeConfig';
-import beepSound from '../../assets/beep.mp3';
+import beep1 from '../../assets/beep1.mp3';
+import beep2 from '../../assets/beep2.mp3';
+import beep3 from '../../assets/beep3.mp3';
+import beep4 from '../../assets/beep4.mp3';
 
 const Timer = () => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isSoundEnabled, setIsSoundEnabled] = useState(true); // Estado para controlar el sonido
+    const [selectedSound, setSelectedSound] = useState(beep1); // Estado para el sonido seleccionado
     const timeConfigRef = useRef();
-    const beepRef = useRef(new Audio(beepSound));
+    const beepRef = useRef(new Audio(selectedSound));
 
     useEffect(() => {
         let timerInterval;
@@ -22,19 +26,19 @@ const Timer = () => {
 
     useEffect(() => {
         if (elapsedTime >= timeConfigRef.current?.getTime() && isSoundEnabled) {
-            playSound();
+            beepRef.current.loop = true; // Repetir indefinidamente
+            beepRef.current.play();
         } else {
             beepRef.current.pause();
             beepRef.current.currentTime = 0;
         }
     }, [elapsedTime, isSoundEnabled]);
 
-    const playSound = () => {
-        beepRef.current.loop = true; // Repetir indefinidamente
-        beepRef.current.play().catch(error => {
-            console.error('Error playing sound:', error);
-        });
-    };
+    useEffect(() => {
+        beepRef.current.pause(); // Detener el sonido actual
+        beepRef.current.currentTime = 0; // Reiniciar el sonido actual
+        beepRef.current = new Audio(selectedSound); // Actualizar la referencia del sonido
+    }, [selectedSound]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -63,6 +67,11 @@ const Timer = () => {
         setIsSoundEnabled((prev) => !prev);
     };
 
+    const handleSoundChange = (event) => {
+        const sound = event.target.value;
+        setSelectedSound(sound);
+    };
+
     return (
         <div className="timer-container">
             <TimeConfig ref={timeConfigRef} />
@@ -77,6 +86,12 @@ const Timer = () => {
                 <button className='secondary-button' onClick={toggleSound}>
                     {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
                 </button>
+                <select className='sound-selector' onChange={handleSoundChange} value={selectedSound}>
+                    <option value={beep1}>Guitarra 1</option>
+                    <option value={beep2}>Guitarra 2</option>
+                    <option value={beep3}>Campanas de viento</option>
+                    <option value={beep4}>Alerta</option>
+                </select>
             </div>
         </div>
     );
