@@ -69,12 +69,14 @@ const Timer = () => {
             <div className="timer-controls">
                 <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
                 <button className='stop-button' onClick={stopTimer}>⏹ Terminar</button>
-                <button className='secondary-button' onClick={toggleSound}>
-                    {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
-                </button>
             </div>
             <div id="timer" className={elapsedTime >= timeConfigRef.current?.getTime() ? 'red' : ''}>
                 {formatTime(elapsedTime)}
+            </div>
+            <div className="timer-controls">
+                <button className='secondary-button' onClick={toggleSound}>
+                    {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
+                </button>
             </div>
         </div>
     );
