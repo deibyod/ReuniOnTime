@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Timer.scss';
 import TimeConfig from '../TimeConfig/TimeConfig';
+import beepSound from '../../assets/beep.mp3';
 
 const Timer = () => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const timeConfigRef = useRef();
+    const beepRef = useRef(new Audio(beepSound));
 
     useEffect(() => {
         let timerInterval;
@@ -16,6 +18,13 @@ const Timer = () => {
         }
         return () => clearInterval(timerInterval);
     }, [isRunning]);
+
+    useEffect(() => {
+        if (elapsedTime >= timeConfigRef.current?.getTime()) {
+            beepRef.current.loop = true; // Repetir indefinidamente
+            beepRef.current.play();
+        }
+    }, [elapsedTime]);
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -36,6 +45,8 @@ const Timer = () => {
 
     const stopTimer = () => {
         setIsRunning(false);
+        beepRef.current.pause(); // Detener el sonido
+        beepRef.current.currentTime = 0; // Reiniciar el sonido
     };
 
     return (
