@@ -6,6 +6,7 @@ import beepSound from '../../assets/beep.mp3';
 const Timer = () => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const [isSoundEnabled, setIsSoundEnabled] = useState(true); // Estado para controlar el sonido
     const timeConfigRef = useRef();
     const beepRef = useRef(new Audio(beepSound));
 
@@ -20,11 +21,20 @@ const Timer = () => {
     }, [isRunning]);
 
     useEffect(() => {
-        if (elapsedTime >= timeConfigRef.current?.getTime()) {
-            beepRef.current.loop = true; // Repetir indefinidamente
-            beepRef.current.play();
+        if (elapsedTime >= timeConfigRef.current?.getTime() && isSoundEnabled) {
+            playSound();
+        } else {
+            beepRef.current.pause();
+            beepRef.current.currentTime = 0;
         }
-    }, [elapsedTime]);
+    }, [elapsedTime, isSoundEnabled]);
+
+    const playSound = () => {
+        beepRef.current.loop = true; // Repetir indefinidamente
+        beepRef.current.play().catch(error => {
+            console.error('Error playing sound:', error);
+        });
+    };
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -49,12 +59,19 @@ const Timer = () => {
         beepRef.current.currentTime = 0; // Reiniciar el sonido
     };
 
+    const toggleSound = () => {
+        setIsSoundEnabled((prev) => !prev);
+    };
+
     return (
         <div className="timer-container">
             <TimeConfig ref={timeConfigRef} />
             <div className="timer-controls">
                 <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
                 <button className='stop-button' onClick={stopTimer}>⏹ Terminar</button>
+                <button className='secondary-button' onClick={toggleSound}>
+                    {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
+                </button>
             </div>
             <div id="timer" className={elapsedTime >= timeConfigRef.current?.getTime() ? 'red' : ''}>
                 {formatTime(elapsedTime)}
