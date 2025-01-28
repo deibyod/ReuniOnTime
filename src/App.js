@@ -1,12 +1,11 @@
 import React from 'react';
-import Counter from './components/Counter/Counter';
+import './App.css';
 import Timer from './components/Timer/Timer';
 
 function App() {
   return (
     <div>
-      <h1>Welcome to ReuniOnTime</h1>
-      <Counter />
+      <h1>ReuniOnTime</h1>
       <Timer />
     </div>
   );

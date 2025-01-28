@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Timer.scss';
+import TimeConfig from '../TimeConfig/TimeConfig';
 
 const Timer = () => {
-    const [selectedTime, setSelectedTime] = useState(0);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const timeConfigRef = useRef();
 
     useEffect(() => {
         let timerInterval;
@@ -27,19 +28,17 @@ const Timer = () => {
         setIsRunning(true);
     };
 
+    const getTimeFromConfig = () => {
+        const time = timeConfigRef.current.getTime();
+        setElapsedTime(0);
+        setIsRunning(true);
+    };
+
     return (
         <div className="timer-container">
-            <label htmlFor="timeSelector">Select time (minutes):</label>
-            <input
-                type="number"
-                id="timeSelector"
-                min="1"
-                max="60"
-                value={selectedTime}
-                onChange={(e) => setSelectedTime(parseInt(e.target.value) * 60)}
-            />
-            <button onClick={startTimer}>Start</button>
-            <div id="timer" className={elapsedTime >= selectedTime ? 'red' : ''}>
+            <TimeConfig ref={timeConfigRef} />
+            <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
+            <div id="timer" className={elapsedTime >= timeConfigRef.current?.getTime() ? 'red' : ''}>
                 {formatTime(elapsedTime)}
             </div>
         </div>
