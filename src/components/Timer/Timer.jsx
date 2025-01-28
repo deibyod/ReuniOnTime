@@ -34,10 +34,17 @@ const Timer = () => {
         setIsRunning(true);
     };
 
+    const stopTimer = () => {
+        setIsRunning(false);
+    };
+
     return (
         <div className="timer-container">
             <TimeConfig ref={timeConfigRef} />
-            <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
+            <div className="timer-controls">
+                <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
+                <button className='stop-button' onClick={stopTimer}>⏹ Terminar</button>
+            </div>
             <div id="timer" className={elapsedTime >= timeConfigRef.current?.getTime() ? 'red' : ''}>
                 {formatTime(elapsedTime)}
             </div>

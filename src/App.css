@@ -27,14 +27,26 @@ button {
 }
 
 button.primary-button  {
+  border: #02b686 1px solid;
   background-color: #02b686;
   color: white;
 }
 
 button:hover.primary-button  {
+  border: #057557 1px solid;
   background-color: #057557;
 }
 
 button:hover.secondary-button {
   background-color: #f7f7f7;
+}
+
+button.stop-button {
+  border: rgb(200, 2, 61) 1px solid;
+  color: rgb(200, 2, 61);
+}
+
+button:hover.stop-button {
+  background-color: rgb(200, 2, 61);
+  color: white;
 }
