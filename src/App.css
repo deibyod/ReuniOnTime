@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: rgb(204, 234, 227);
+  background-color: rgb(240, 245, 244);
 }
 
 .App {
@@ -46,8 +46,14 @@ button:hover.primary-button  {
   background-color: #057557;
 }
 
+button.secondary-button {
+  background-color: #ffffff;
+  color: #535353;
+}
+
 button:hover.secondary-button {
-  background-color: #f7f7f7;
+  background-color: #ffffff;
+  color: #1f1f1f;
 }
 
 button.stop-button {
