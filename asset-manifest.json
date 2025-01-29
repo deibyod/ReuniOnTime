@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/ReuniOnTime/static/css/main.e34191fd.css",
-    "main.js": "/ReuniOnTime/static/js/main.214ee2ad.js",
-    "static/media/relojio.png": "/ReuniOnTime/static/media/relojio.6b4006275fa811ffb584.png",
-    "static/media/beep.mp3": "/ReuniOnTime/static/media/beep.99dbfad87e1971f6d83c.mp3",
+    "main.css": "/ReuniOnTime/static/css/main.c9697fde.css",
+    "main.js": "/ReuniOnTime/static/js/main.f15ff938.js",
+    "static/media/arenio.png": "/ReuniOnTime/static/media/arenio.0bce68423952d74a4033.png",
+    "static/media/beep1.mp3": "/ReuniOnTime/static/media/beep1.e711e7ae69a34c15360a.mp3",
+    "static/media/beep2.mp3": "/ReuniOnTime/static/media/beep2.80cc50499d777da43d95.mp3",
+    "static/media/beep3.mp3": "/ReuniOnTime/static/media/beep3.85e6b32495431ca8f704.mp3",
+    "static/media/beep4.mp3": "/ReuniOnTime/static/media/beep4.99dbfad87e1971f6d83c.mp3",
     "index.html": "/ReuniOnTime/index.html",
-    "main.e34191fd.css.map": "/ReuniOnTime/static/css/main.e34191fd.css.map",
-    "main.214ee2ad.js.map": "/ReuniOnTime/static/js/main.214ee2ad.js.map"
+    "main.c9697fde.css.map": "/ReuniOnTime/static/css/main.c9697fde.css.map",
+    "main.f15ff938.js.map": "/ReuniOnTime/static/js/main.f15ff938.js.map"
   },
   "entrypoints": [
-    "static/css/main.e34191fd.css",
-    "static/js/main.214ee2ad.js"
+    "static/css/main.c9697fde.css",
+    "static/js/main.f15ff938.js"
   ]
 }
