@@ -11,6 +11,7 @@ const Timer = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [isSoundEnabled, setIsSoundEnabled] = useState(true); // Estado para controlar el sonido
     const [selectedSound, setSelectedSound] = useState(beep1); // Estado para el sonido seleccionado
+    const [savedTimes, setSavedTimes] = useState([]); // Estado para almacenar los conteos guardados
     const timeConfigRef = useRef();
     const beepRef = useRef(new Audio(selectedSound));
 
@@ -63,6 +64,11 @@ const Timer = () => {
         beepRef.current.currentTime = 0; // Reiniciar el sonido
     };
 
+    const nextTimer = () => {
+        setSavedTimes([...savedTimes, elapsedTime]);
+        setElapsedTime(0);
+    };
+
     const toggleSound = () => {
         setIsSoundEnabled((prev) => !prev);
     };
@@ -77,10 +83,19 @@ const Timer = () => {
             <TimeConfig ref={timeConfigRef} />
             <div className="timer-controls">
                 <button className='primary-button' onClick={getTimeFromConfig}>▶ Empezar</button>
-                <button className='stop-button' onClick={stopTimer}>⏹ Terminar</button>
+                <button className='tertiary-button' onClick={nextTimer}>⏭ Siguiente</button>
+                <button className='stop-button' onClick={stopTimer}>⏹ Parar</button>
             </div>
             <div id="timer" className={elapsedTime >= timeConfigRef.current?.getTime() ? 'red' : ''}>
                 {formatTime(elapsedTime)}
+            </div>
+            <div className="saved-times">
+                <h3>Conteos Anteriores:</h3>
+                <ul>
+                    {savedTimes.map((time, index) => (
+                        <li key={index}>{formatTime(time)}</li>
+                    ))}
+                </ul>
             </div>
             <div className="timer-controls">
                 <button className='secondary-button' onClick={toggleSound}>

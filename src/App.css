@@ -56,6 +56,19 @@ button:hover.secondary-button {
   color: #1f1f1f;
 }
 
+button.tertiary-button {
+  border: #0d99f6 1px solid;
+  background-color: #0d99f6;
+  color: #fff;
+}
+
+button:hover.tertiary-button {
+  border: #0d99f6 1px solid;
+  background-color: #086db0;
+  color: #fff;
+}
+
+
 button.stop-button {
   border: rgb(200, 2, 61) 1px solid;
   color: rgb(200, 2, 61);
