@@ -93,7 +93,9 @@ const Timer = () => {
                 <h3>Conteos Anteriores:</h3>
                 <ul>
                     {savedTimes.map((time, index) => (
-                        <li key={index}>{formatTime(time)}</li>
+                        <li key={index} className={time >= timeConfigRef.current?.getTime() ? 'red' : ''}>
+                            {formatTime(time)}
+                        </li>
                     ))}
                 </ul>
             </div>
