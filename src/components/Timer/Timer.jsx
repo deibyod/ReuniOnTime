@@ -78,6 +78,10 @@ const Timer = () => {
         setSelectedSound(sound);
     };
 
+    const getTotalSavedTime = () => {
+        return savedTimes.reduce((total, time) => total + time, 0);
+    };
+
     return (
         <div className="timer-container">
             <TimeConfig ref={timeConfigRef} />
@@ -98,6 +102,10 @@ const Timer = () => {
                         </li>
                     ))}
                 </ul>
+                <div className="total-saved-time">
+                    <h4>Tiempo Total:</h4>
+                    <p>{formatTime(getTotalSavedTime())}</p>
+                </div>
             </div>
             <div className="timer-controls">
                 <button className='secondary-button' onClick={toggleSound}>
