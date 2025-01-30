@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ReuniOnTime/static/css/main.a431bc79.css",
-    "main.js": "/ReuniOnTime/static/js/main.fc81bbe6.js",
-    "static/media/arenio.png": "/ReuniOnTime/static/media/arenio.0bce68423952d74a4033.png",
-    "static/media/beep1.mp3": "/ReuniOnTime/static/media/beep1.e711e7ae69a34c15360a.mp3",
-    "static/media/beep2.mp3": "/ReuniOnTime/static/media/beep2.80cc50499d777da43d95.mp3",
-    "static/media/beep3.mp3": "/ReuniOnTime/static/media/beep3.85e6b32495431ca8f704.mp3",
-    "static/media/beep4.mp3": "/ReuniOnTime/static/media/beep4.99dbfad87e1971f6d83c.mp3",
-    "index.html": "/ReuniOnTime/index.html",
-    "main.a431bc79.css.map": "/ReuniOnTime/static/css/main.a431bc79.css.map",
-    "main.fc81bbe6.js.map": "/ReuniOnTime/static/js/main.fc81bbe6.js.map"
+    "main.css": "/static/css/main.a431bc79.css",
+    "main.js": "/static/js/main.a8e1d2c5.js",
+    "static/media/arenio.png": "/static/media/arenio.0bce68423952d74a4033.png",
+    "static/media/beep1.mp3": "/static/media/beep1.e711e7ae69a34c15360a.mp3",
+    "static/media/beep2.mp3": "/static/media/beep2.80cc50499d777da43d95.mp3",
+    "static/media/beep3.mp3": "/static/media/beep3.85e6b32495431ca8f704.mp3",
+    "static/media/beep4.mp3": "/static/media/beep4.99dbfad87e1971f6d83c.mp3",
+    "index.html": "/index.html",
+    "main.a431bc79.css.map": "/static/css/main.a431bc79.css.map",
+    "main.a8e1d2c5.js.map": "/static/js/main.a8e1d2c5.js.map"
   },
   "entrypoints": [
     "static/css/main.a431bc79.css",
-    "static/js/main.fc81bbe6.js"
+    "static/js/main.a8e1d2c5.js"
   ]
 }
