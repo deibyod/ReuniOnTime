@@ -14,14 +14,14 @@
     "build": "react-scripts build"
   },
   "dependencies": {
-    "gh-pages": "^3.2.3",
+    "@hotjar/browser": "^1.0.9",
+    "gh-pages": "^6.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "latest",
     "sass": "^1.83.4"
   },
   "devDependencies": {
-    "react-scripts": "latest"
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
