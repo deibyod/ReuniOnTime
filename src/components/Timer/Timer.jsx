@@ -10,7 +10,11 @@ const Timer = () => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isSoundEnabled, setIsSoundEnabled] = useState(true); // Estado para controlar el sonido
-    const [selectedSound, setSelectedSound] = useState(beep1); // Estado para el sonido seleccionado
+    const [selectedSound, setSelectedSound] = useState(() => {
+        // Recuperar el sonido seleccionado desde localStorage
+        const savedSound = localStorage.getItem('selectedSound');
+        return savedSound ? savedSound : beep1;
+    }); // Estado para el sonido seleccionado
     const [savedTimes, setSavedTimes] = useState([]); // Estado para almacenar los conteos guardados
     const timeConfigRef = useRef();
     const beepRef = useRef(new Audio(selectedSound));
@@ -76,6 +80,7 @@ const Timer = () => {
     const handleSoundChange = (event) => {
         const sound = event.target.value;
         setSelectedSound(sound);
+        localStorage.setItem('selectedSound', sound); // Guardar el sonido seleccionado en localStorage
     };
 
     const getTotalSavedTime = () => {
