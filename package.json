@@ -1,17 +1,17 @@
 {
   "name": "reuniontime",
-  "version": "1.0.0",
+  "version": "1.4.1",
   "private": true,
   "homepage": "https://reuniontime.deibyod.co",
   "repository": {
-    "type": "git",
     "url": "https://github.com/deibyod/ReuniOnTime.git"
   },
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "jest"
   },
   "dependencies": {
     "@hotjar/browser": "^1.0.9",
@@ -21,7 +21,9 @@
     "sass": "^1.83.4"
   },
   "devDependencies": {
-    "jest": "^27.5.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "jest": "^27.0.6",
     "react-scripts": "^5.0.1"
   },
   "browserslist": {

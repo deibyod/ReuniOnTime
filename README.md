@@ -1,3 +1,9 @@
+Instalar dependencias:
+yarn install
+
+Servidor de desarrollo:
+yarn start
+
 Predeploy:
 yarn predeply
 
@@ -6,3 +12,4 @@ yarn deploy
 
 Run test:
 npx jest
+yarn test
