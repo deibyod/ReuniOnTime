@@ -12,9 +12,12 @@ const TimeConfig = forwardRef((props, ref) => {
 
     const handleInputChange = (event) => {
         const value = event.target.value;
-        const [minutes, seconds] = value.split(':').map(Number);
-        if (!isNaN(minutes) && !isNaN(seconds)) {
-            setCount(minutes * 60 + seconds);
+        const timeParts = value.split(':');
+        if (timeParts.length === 2) {
+            const [minutes, seconds] = timeParts.map(Number);
+            if (!isNaN(minutes) && !isNaN(seconds) && minutes >= 0 && seconds >= 0 && seconds < 60) {
+                setCount(minutes * 60 + seconds);
+            }
         }
     };
 
@@ -23,18 +26,18 @@ const TimeConfig = forwardRef((props, ref) => {
     }));
 
     return (
-        <div className="counter">
-            <p className='configured-time'>
+        <div className="time-config-counter">
+            <label htmlFor="time-configured-time" className='configured-time'>
                 Tiempo: 
-                <input 
-                    id="timeconfig" 
-                    type="text" 
-                    value={formatTime(count)} 
-                    onChange={handleInputChange} 
-                />
-            </p>
-            <button className='secondary-button' onClick={() => setCount(count + 10)}>⬆ Aumentar</button>
-            <button className='secondary-button' onClick={() => setCount(count - 10)}>⬇ Reducir</button>
+            </label>
+            <input 
+                id="time-configured-time" 
+                type="text" 
+                value={formatTime(count)} 
+                onChange={handleInputChange} 
+            />
+            <button className='secondary-button' onClick={() => setCount(prevCount => Math.min(prevCount + 10, 3600))}>⬆ Aumentar</button>
+            <button className='secondary-button' onClick={() => setCount(Math.max(count - 10, 0))}>⬇ Reducir</button>
         </div>
     );
 });
