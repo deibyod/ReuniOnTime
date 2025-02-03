@@ -1,6 +1,9 @@
 module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest'
+  },
   collectCoverage: true,
   coverageDirectory: 'coverage',
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
