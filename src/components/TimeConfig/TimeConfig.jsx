@@ -27,15 +27,17 @@ const TimeConfig = forwardRef((props, ref) => {
 
     return (
         <div className="time-config-counter">
-            <label htmlFor="time-configured-time" className='configured-time'>
-                Tiempo: 
-            </label>
-            <input 
-                id="time-configured-time" 
-                type="text" 
-                value={formatTime(count)} 
-                onChange={handleInputChange} 
-            />
+            <p className='configured-time'>
+                <label htmlFor="time-configured-time" className='configured-time'>
+                    Tiempo: 
+                </label>
+                <input 
+                    id="time-configured-time" 
+                    type="text" 
+                    value={formatTime(count)} 
+                    onChange={handleInputChange} 
+                />
+            </p>
             <button className='secondary-button' onClick={() => setCount(prevCount => Math.min(prevCount + 10, 3600))}>⬆ Aumentar</button>
             <button className='secondary-button' onClick={() => setCount(Math.max(count - 10, 0))}>⬇ Reducir</button>
         </div>
