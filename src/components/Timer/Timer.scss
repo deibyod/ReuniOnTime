@@ -34,3 +34,27 @@
     font-size: 1.2em;
 }
 
+.customization-controls {
+    background-color: #e4e4e4; /* Fondo distinto */
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.customization-controls input[type="text"],
+.customization-controls input[type="file"] {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #ccc;
+    color: black;
+}
+
+.customization-controls input[type="text"]:hover,
+.customization-controls input[type="file"]:hover {
+    background-color: #bbb;
+}
+

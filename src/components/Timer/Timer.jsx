@@ -5,8 +5,9 @@ import beep1 from '../../assets/beep1.mp3';
 import beep2 from '../../assets/beep2.mp3';
 import beep3 from '../../assets/beep3.mp3';
 import beep4 from '../../assets/beep4.mp3';
+import avatarDefault from '../../assets/arenio.png';
 
-const Timer = () => {
+const Timer = ({ avatarUrl, setAvatarUrl }) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isSoundEnabled, setIsSoundEnabled] = useState(true); // Estado para controlar el sonido
@@ -16,6 +17,8 @@ const Timer = () => {
         return savedSound ? savedSound : beep1;
     }); // Estado para el sonido seleccionado
     const [savedTimes, setSavedTimes] = useState([]); // Estado para almacenar los conteos guardados
+    const [tempAvatarUrl, setTempAvatarUrl] = useState(''); // Estado temporal para la URL del avatar
+    const [imageSource, setImageSource] = useState(''); // Estado para controlar la fuente de la imagen
     const timeConfigRef = useRef();
     const beepRef = useRef(new Audio(selectedSound));
 
@@ -83,6 +86,38 @@ const Timer = () => {
         localStorage.setItem('selectedSound', sound); // Guardar el sonido seleccionado en localStorage
     };
 
+    const handleAvatarUrlChange = (event) => {
+        const url = event.target.value;
+        setTempAvatarUrl(url);
+        setImageSource('url');
+    };
+
+    const handleAvatarFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setTempAvatarUrl(reader.result);
+                setImageSource('file');
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const applyAvatar = () => {
+        if (tempAvatarUrl) {
+            setAvatarUrl(tempAvatarUrl);
+            localStorage.setItem('avatarUrl', tempAvatarUrl); // Guardar la URL del avatar en localStorage
+        }
+    };
+
+    const resetAvatar = () => {
+        setAvatarUrl(avatarDefault);
+        localStorage.removeItem('avatarUrl'); // Eliminar la URL del avatar de localStorage
+        setTempAvatarUrl('');
+        setImageSource('');
+    };
+
     const getTotalSavedTime = () => {
         return savedTimes.reduce((total, time) => total + time, 0);
     };
@@ -112,16 +147,33 @@ const Timer = () => {
                     <p>{formatTime(getTotalSavedTime())}</p>
                 </div>
             </div>
-            <div className="timer-controls">
-                <button className='secondary-button' onClick={toggleSound}>
-                    {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
-                </button>
-                <select className='sound-selector' onChange={handleSoundChange} value={selectedSound}>
-                    <option value={beep1}>Guitarra 1</option>
-                    <option value={beep2}>Guitarra 2</option>
-                    <option value={beep3}>Campanas de viento</option>
-                    <option value={beep4}>Alerta</option>
-                </select>
+            <div className="customization-controls">
+                <div className="timer-controls">
+                    <button className='secondary-button' onClick={toggleSound}>
+                        {isSoundEnabled ? '🔊 Desactivar Sonido' : '🔇 Activar Sonido'}
+                    </button>
+                    <select className='sound-selector' onChange={handleSoundChange} value={selectedSound}>
+                        <option value={beep1}>Guitarra 1</option>
+                        <option value={beep2}>Guitarra 2</option>
+                        <option value={beep3}>Campanas de viento</option>
+                        <option value={beep4}>Alerta</option>
+                    </select>
+                </div>
+                <div className="timer-controls">
+                    <input
+                        type="text"
+                        placeholder="URL de la imagen"
+                        onChange={handleAvatarUrlChange}
+                        value={imageSource === 'url' ? tempAvatarUrl : ''}
+                    />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarFileChange}
+                    />
+                    <button className='secondary-button' onClick={applyAvatar}>Aplicar Avatar</button>
+                    <button className='secondary-button' onClick={resetAvatar}>Restablecer Avatar</button>
+                </div>
             </div>
         </div>
     );
