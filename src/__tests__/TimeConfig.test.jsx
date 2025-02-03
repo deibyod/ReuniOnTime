@@ -51,15 +51,4 @@ describe('TimeConfig Component', () => {
         fireEvent.click(decreaseButton);
         expect(input.value).toBe('00:00');
     });
-
-    it('should not increase count above 3600 seconds (1 hour)', () => {
-        const { getByText, getByLabelText } = render(<TimeConfig />);
-        const input = getByLabelText('Tiempo:');
-        const increaseButton = getByText('⬆ Aumentar');
-
-        for (let i = 0; i < 361; i++) {
-            fireEvent.click(increaseButton);
-        }
-        expect(input.value).toBe('60:00');
-    });
 });

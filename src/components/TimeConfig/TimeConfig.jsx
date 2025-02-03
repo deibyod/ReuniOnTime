@@ -11,13 +11,14 @@ const TimeConfig = forwardRef((props, ref) => {
     };
 
     const handleInputChange = (event) => {
-        const value = event.target.value;
-        const timeParts = value.split(':');
-        if (timeParts.length === 2) {
-            const [minutes, seconds] = timeParts.map(Number);
-            if (!isNaN(minutes) && !isNaN(seconds) && minutes >= 0 && seconds >= 0 && seconds < 60) {
-                setCount(minutes * 60 + seconds);
-            }
+        let value = event.target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+        if (value.length > 5) {
+            value = value.slice(-5); // Keep only the last 5 digits
+        }
+        const minutes = Math.floor(parseInt(value.slice(0, -2) || '0', 10));
+        const seconds = parseInt(value.slice(-2) || '0', 10);
+        if (!isNaN(minutes) && !isNaN(seconds) && minutes >= 0 && minutes < 600 && seconds >= 0 && seconds < 60) {
+            setCount(minutes * 60 + seconds);
         }
     };
 
@@ -29,17 +30,19 @@ const TimeConfig = forwardRef((props, ref) => {
         <div className="time-config-counter">
             <p className='configured-time'>
                 <label htmlFor="time-configured-time" className='configured-time'>
-                    Tiempo: 
+                    Tiempo:
                 </label>
-                <input 
-                    id="time-configured-time" 
-                    type="text" 
-                    value={formatTime(count)} 
-                    onChange={handleInputChange} 
+                <input
+                    id="time-configured-time"
+                    type="text"
+                    value={formatTime(count)}
+                    onChange={handleInputChange}
                 />
             </p>
-            <button className='secondary-button' onClick={() => setCount(prevCount => Math.min(prevCount + 10, 3600))}>⬆ Aumentar</button>
-            <button className='secondary-button' onClick={() => setCount(Math.max(count - 10, 0))}>⬇ Reducir</button>
+            <p>
+            <button className='secondary-button' onClick={() => setCount(prevCount => prevCount + 10)}>⬆ Aumentar</button>
+            <button className='secondary-button' onClick={() => setCount(prevCount => Math.max(prevCount - 10, 0))}>⬇ Reducir</button>
+            </p>
         </div>
     );
 });
